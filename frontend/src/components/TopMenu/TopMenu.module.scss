@@ -1,0 +1,43 @@
+.topMenu {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+  height: 50px;
+  
+  .infoContainer {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    
+    .datetime {
+      font-size: 0.875rem;
+      color: #495057;
+    }
+    
+    .sessionsCounter {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+      color: #495057;
+      
+      .icon {
+        font-size: 1rem;
+      }
+      
+      .count {
+        font-weight: bold;
+        background-color: #e9ecef;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem;
+      }
+      
+      .label {
+        color: #6c757d;
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+.navigationMenu {
+  background-color: #343a40;
+  padding: 1rem;
+  width: 200px;
+  height: calc(100vh - 50px); // Subtract TopMenu height
+  
+  .menuList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    
+    li {
+      margin-bottom: 0.5rem;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+      
+      .link, .activeLink {
+        display: block;
+        padding: 0.75rem 1rem;
+        color: #f8f9fa;
+        text-decoration: none;
+        border-radius: 0.25rem;
+        transition: background-color 0.2s ease;
+        
+        &:hover {
+          background-color: #495057;
+        }
+      }
+      
+      .activeLink {
+        background-color: #007bff;
+        font-weight: bold;
+        
+        &:hover {
+          background-color: #0069d9;
+        }
+      }
+    }
+  }
+}
