@@ -3,16 +3,24 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start:frontend": "npm run dev --workspace=frontend",
-    "start:backend": "npm run dev --workspace=backend",
-    "build:frontend": "npm run build --workspace=frontend",
-    "build:backend": "npm run build --workspace=backend",
-    "test:frontend": "npm run test --workspace=frontend",
-    "test:backend": "npm run test --workspace=backend"
+    "start:frontend": "cd frontend && npm run dev",
+    "start:backend": "cd backend && npm run dev",
+    "build:frontend": "cd frontend && npm run build",
+    "build:backend": "cd backend && npm run build",
+    "test:frontend": "cd frontend && npm run test",
+    "test:backend": "cd backend && npm run test",
+    "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\""
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
 }

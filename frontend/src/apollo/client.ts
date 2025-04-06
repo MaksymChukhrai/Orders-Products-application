@@ -1,5 +1,3 @@
-//frontend\src\apollo\client.ts
-
 import { ApolloClient, InMemoryCache, HttpLink, from, split } from '@apollo/client';
 import { getMainDefinition } from '@apollo/client/utilities';
 import { GraphQLWsLink } from '@apollo/client/link/subscriptions';
@@ -67,9 +65,18 @@ const client = new ApolloClient({
       },
     },
   }),
+  connectToDevTools: process.env.NODE_ENV === 'development', // Включить DevTools только в режиме разработки
   defaultOptions: {
     watchQuery: {
       fetchPolicy: 'cache-and-network',
+      errorPolicy: 'all',
+    },
+    query: {
+      fetchPolicy: 'network-only',
+      errorPolicy: 'all',
+    },
+    mutate: {
+      errorPolicy: 'all',
     },
   },
 });

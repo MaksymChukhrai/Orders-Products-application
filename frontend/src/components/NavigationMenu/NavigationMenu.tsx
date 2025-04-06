@@ -1,5 +1,8 @@
+"use client";
+
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
 import styles from './NavigationMenu.module.scss';
 
@@ -10,6 +13,8 @@ const linkVariants = {
 };
 
 const NavigationMenu: React.FC = () => {
+  const pathname = usePathname();
+
   return (
     <nav className={styles.navigationMenu}>
       <ul className={styles.menuList}>
@@ -20,12 +25,12 @@ const NavigationMenu: React.FC = () => {
             whileHover="hover"
             whileTap="tap"
           >
-            <NavLink
-              to="/orders"
-              className={({ isActive }) => isActive ? styles.activeLink : styles.link}
+            <Link
+              href="/orders"
+              className={pathname === '/orders' ? styles.activeLink : styles.link}
             >
               Orders
-            </NavLink>
+            </Link>
           </motion.div>
         </li>
         <li>
@@ -35,12 +40,12 @@ const NavigationMenu: React.FC = () => {
             whileHover="hover"
             whileTap="tap"
           >
-            <NavLink
-              to="/products"
-              className={({ isActive }) => isActive ? styles.activeLink : styles.link}
+            <Link
+              href="/products"
+              className={pathname === '/products' ? styles.activeLink : styles.link}
             >
               Products
-            </NavLink>
+            </Link>
           </motion.div>
         </li>
       </ul>

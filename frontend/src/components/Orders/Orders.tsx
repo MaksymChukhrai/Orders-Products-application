@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -8,6 +10,7 @@ import DeleteConfirmation from '../DeleteConfirmation/DeleteConfirmation';
 import { formatDate, formatMonthYear } from '../../utils/dateFormat';
 import { formatPriceUSD, formatPriceEUR } from '../../utils/priceFormat';
 import styles from './Orders.module.scss';
+import { Order } from '../../types/Order'; // Импортируем тип Order
 
 const listVariants = {
   hidden: { opacity: 0 },
@@ -50,7 +53,7 @@ const detailsVariants = {
 
 const Orders: React.FC = () => {
   const dispatch = useDispatch();
-  const { orders, selectedOrder, loading, error, deleteOrder } = useOrders();
+  const { orders, loading, error, deleteOrder } = useOrders(); // Удалили неиспользуемую переменную selectedOrder
   const [selectedOrderId, setSelectedOrderId] = useState<string | null>(null);
 
   const handleOrderClick = (order: Order) => {
@@ -95,7 +98,7 @@ const Orders: React.FC = () => {
                 <h3>{order.title}</h3>
                 <div className={styles.orderMeta}>
                   <span className={styles.productsCount}>
-                    {order.products.length} {order.products.length === 1 ? 'product' : 'products'}
+                    {order.productsCount} {order.productsCount === 1 ? 'product' : 'products'}
                   </span>
                   <button 
                     className={styles.deleteButton}
@@ -130,8 +133,16 @@ const Orders: React.FC = () => {
                     
                     <div className={styles.detailRow}>
                       <span className={styles.label}>Total Price:</span>
-                      <span>{formatPriceUSD(order.totalPrice)}</span>
-                      <span className={styles.altFormat}>{formatPriceEUR(order.totalPrice)}</span>
+                      <span>
+                        {Array.isArray(order.totalPrice) && order.totalPrice.length > 0
+                          ? formatPriceUSD(order.totalPrice[0].value)
+                          : formatPriceUSD(0)}
+                      </span>
+                      <span className={styles.altFormat}>
+                        {Array.isArray(order.totalPrice) && order.totalPrice.length > 0
+                          ? formatPriceEUR(order.totalPrice[0].value)
+                          : formatPriceEUR(0)}
+                      </span>
                     </div>
                     
                     <div className={styles.productsList}>
@@ -141,7 +152,11 @@ const Orders: React.FC = () => {
                           {order.products.map(product => (
                             <li key={product.id}>
                               <span>{product.title}</span>
-                              <span className={styles.productPrice}>{formatPriceUSD(product.price)}</span>
+                              <span className={styles.productPrice}>
+                                {Array.isArray(product.price) && product.price.length > 0
+                                  ? formatPriceUSD(product.price[0].value)
+                                  : formatPriceUSD(product.price)} {/* Предполагая, что price может быть и числом */}
+                              </span>
                             </li>
                           ))}
                         </ul>

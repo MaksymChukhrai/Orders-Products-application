@@ -1,4 +1,5 @@
-import express from 'express';
+// Исправленная версия index.ts
+import express, { Application } from 'express';
 import http from 'http';
 import { ApolloServer } from 'apollo-server-express';
 import mongoose from 'mongoose';
@@ -15,7 +16,8 @@ const PORT = process.env.PORT || 4000;
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/orders-products';
 
 async function startServer() {
-  const app = express();
+  // Создаём express приложение с правильным типом
+  const app: Application = express();
   const httpServer = http.createServer(app);
 
   app.use(cors());
@@ -42,7 +44,12 @@ async function startServer() {
   });
 
   await apolloServer.start();
-  apolloServer.applyMiddleware({ app, path: '/graphql' });
+  
+  // Изменяем тип с Express на Application
+  apolloServer.applyMiddleware({ 
+    app: app as any, // Используем явное приведение типов
+    path: '/graphql' 
+  });
 
   // Setup WebSocket
   const io = setupSessionCounter(httpServer);
