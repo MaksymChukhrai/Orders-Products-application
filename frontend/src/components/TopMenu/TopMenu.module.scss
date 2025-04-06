@@ -1,30 +1,49 @@
+// src/components/TopMenu/TopMenu.module.scss
 .topMenu {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
-  padding: 0.5rem 1rem;
-  background-color: #f8f9fa;
+  padding: 0.8rem 1.5rem;
+  background-color: #fff;
   border-bottom: 1px solid #e9ecef;
-  height: 50px;
+  height: 60px;
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    
+    .logoIcon {
+      width: 32px;
+      height: 32px;
+      background-color: #7bb93a;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .logoText {
+      font-size: 1rem;
+      color: #7bb93a;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+  }
   
   .infoContainer {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    gap: 2rem;
     
-    .datetime {
-      font-size: 0.875rem;
-      color: #495057;
-    }
-    
-    .sessionsCounter {
+    .activeSessionsCounter {
       display: flex;
       align-items: center;
       gap: 0.5rem;
       font-size: 0.875rem;
       color: #495057;
       
-      .icon {
+      .sessionsIcon {
         font-size: 1rem;
       }
       
@@ -37,6 +56,26 @@
       
       .label {
         color: #6c757d;
+      }
+    }
+    
+    .dateTimeContainer {
+      text-align: right;
+      
+      .dateText {
+        font-size: 0.875rem;
+        color: #495057;
+        margin-bottom: 2px;
+      }
+      
+      .dateDetails {
+        font-size: 0.875rem;
+        color: #6c757d;
+        
+        .timeIcon {
+          margin: 0 0.25rem;
+          display: inline-block;
+        }
       }
     }
   }

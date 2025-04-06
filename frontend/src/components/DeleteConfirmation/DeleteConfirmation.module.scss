@@ -1,67 +1,104 @@
+// src/components/DeleteConfirmation/DeleteConfirmation.module.scss
 .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  
+  .modal {
+    background-color: #fff;
+    width: 450px;
+    max-width: 90%;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     
-    .modal {
-      background-color: #fff;
-      padding: 2rem;
-      border-radius: 0.5rem;
-      width: 400px;
-      max-width: 90%;
-      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    h2 {
+      margin: 0;
+      padding: 1.5rem;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #343a40;
+      text-align: center;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    
+    .itemDetails {
+      display: flex;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      background-color: #f8f9fa;
+      gap: 1rem;
       
-      h2 {
-        margin-top: 0;
-        color: #343a40;
-      }
-      
-      p {
-        color: #495057;
-      }
-      
-      .warning {
-        color: #dc3545;
-        font-weight: bold;
-      }
-      
-      .buttons {
+      .productIcon {
+        width: 48px;
+        height: 48px;
         display: flex;
-        justify-content: flex-end;
-        gap: 1rem;
-        margin-top: 1.5rem;
-        
-        button {
-          padding: 0.5rem 1rem;
-          border: none;
-          border-radius: 0.25rem;
-          cursor: pointer;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .itemText {
+        .itemTitle {
+          font-weight: 500;
+          color: #343a40;
+          margin-bottom: 0.25rem;
         }
         
-        .cancelButton {
-          background-color: #6c757d;
-          color: #fff;
-          
-          &:hover {
-            background-color: #5a6268;
-          }
+        .itemDescription {
+          font-size: 0.8rem;
+          color: #6c757d;
+        }
+      }
+    }
+    
+    .actions {
+      display: flex;
+      padding: 1rem 1.5rem;
+      background-color: #7bb93a;
+      justify-content: space-between;
+      
+      .cancelButton {
+        background: none;
+        border: none;
+        color: white;
+        font-weight: 500;
+        padding: 0.75rem 1.5rem;
+        cursor: pointer;
+        font-size: 0.9rem;
+        
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+      
+      .deleteButton {
+        background-color: white;
+        color: #7bb93a;
+        border: none;
+        border-radius: 4px;
+        padding: 0.75rem 1.5rem;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.9rem;
+        
+        &:hover {
+          background-color: #f8f9fa;
         }
         
-        .deleteButton {
-          background-color: #dc3545;
-          color: #fff;
-          
-          &:hover {
-            background-color: #c82333;
-          }
+        svg {
+          margin-right: 0.25rem;
         }
       }
     }
   }
+}
